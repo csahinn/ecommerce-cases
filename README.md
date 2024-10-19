@@ -52,6 +52,7 @@ Feature: Like the first comment on Amazon product
 
 ## Test Automation - II (API)
 ### GET Requests
+#### Happy Path
 ```cucumber
 Feature: Get User List (Happy Path)
 
@@ -61,7 +62,7 @@ Feature: Get User List (Happy Path)
     Then the response status code should be 200
     And the response body should contain user details
 ```
-
+#### User Not Found
 ```cucumber
 Feature: Get User List (404 - User Not Found)
 
@@ -95,17 +96,6 @@ Feature: Login Account (400 - Invalid Password)
     Then the response status code should be 400
     And the response body should contain an error about missing password
 
-```
-#### Invalid Bearer Token
-```cucumber
-Feature: Login Account (401 - Invalid Bearer Token)
-
-  Scenario: Fail to login due to invalid bearer token
-    Given the API is available at "https://reqres.in/api"
-    And I have valid login credentials
-    When I send a POST request to "/login" with an invalid bearer token
-    Then the response status code should be 401
-    And the response body should contain an authentication error
 ```
 
 ## Bug Reports
