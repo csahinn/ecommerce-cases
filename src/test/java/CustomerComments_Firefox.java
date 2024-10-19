@@ -3,8 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
@@ -15,8 +14,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
-public class CustomerComments {
+public class CustomerComments_Firefox {
     private WebDriver driver;
     private WebElement searchBox;
     private String baseUrl;
@@ -24,16 +22,8 @@ public class CustomerComments {
 
     @BeforeMethod
     public void setUp() throws Exception { //Let's set up our configurations. Details on README.md.
-      //  WebDriverManager.chromedriver().driverVersion("128.0").setup();
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-background-timer-throttling");
-        options.addArguments("--disable-backgrounding-occluded-windows");
-
-        System.setProperty("webdriver.chrome.driver","C:\\drivers\\chromedriver.exe");
-        driver = new ChromeDriver(options);
+        System.setProperty("webdriver.firefox.driver","C:\\drivers\\geckodriver.exe");
+        driver = new FirefoxDriver();
         baseUrl = "https://www.amazon.com.tr";
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
@@ -49,12 +39,9 @@ public class CustomerComments {
         List<WebElement> productList = driver.findElements(By.xpath("//div[@data-component-type='s-search-result']"));
         System.out.println("Number of products: "+productList.size());
 
+        //Click the first item.
         if(!productList.isEmpty()) {
-            WebElement firstProduct = productList.get(0);
-            firstProduct.click();
-            System.out.println("Clicked to first item.");
-            //firstProduct.click();
-
+            System.out.println(productList.get(0));
             Thread.sleep(10000);
         } else {
             System.out.println("No items found.");
@@ -65,7 +52,7 @@ public class CustomerComments {
         acceptCookies.click();
         */
     }
-@AfterMethod
+    @AfterMethod
     public void tearDown() throws Exception {
         if(driver != null) {
             driver.quit();
