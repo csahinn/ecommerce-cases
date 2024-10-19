@@ -32,8 +32,6 @@ I have used a couple of frameworks in this practice. You can see all the depende
 - Provides detailed error messages for debugging and viewing test results.
 - I used version 4.4.0 of RestAssured in this test.
 
-<hr>
-
 ## Test Automation - I (UI)
 
 ### BDD Structure
