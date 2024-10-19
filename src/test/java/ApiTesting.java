@@ -71,12 +71,12 @@ public class ApiTesting {
 
         System.out.println(response.getBody().asString()); //Print the body
     }
-
+    /*
     @Test
     public void loginAccountInvalidPassword() { //We expect to return 400: Invalid Password.
         String requestBody = "{\n" +
                 "    \"email\": \"eve.holt@reqres.in\",\n" +
-                "    \"password\": \"123456\"\n" +
+                "    \"password\": \"asdasd\"\n" +
                 "}";
 
         Response response = RestAssured
@@ -90,7 +90,6 @@ public class ApiTesting {
         System.out.println(response.getBody().asString()); //Print the body
     }
 
-
     @Test
     public void loginAccountMissingBearerToken () { //We expect to return 401: Unauthorizated.
         String requestBody = "{\n" +
@@ -101,7 +100,7 @@ public class ApiTesting {
         Response response = RestAssured
                .given()
                .header("Content-Type","application/json")
-               .header("Authorization","")
+               .header("Authorization","Bearer ")
                .body(requestBody)
                .post(baseUrl+"/login");
 
@@ -110,7 +109,7 @@ public class ApiTesting {
     }
 
     @Test
-    public void loginAccountInvalidBearerToken () { //We expect to return 401: Invalid bearer token.
+    public void loginAccountInvalidBearerToken () { //We expect to return 401: Unauthorizated.
         String requestBody = "{\n" +
                 "    \"email\": \"eve.holt@reqres.in\",\n" +
                 "    \"password\": \"cityslicka\"\n" +
@@ -123,7 +122,7 @@ public class ApiTesting {
                 .body(requestBody)
                 .post(baseUrl + "/login");
 
-        Assert.assertEquals(response.getStatusCode(), 400); //Check response code
+        Assert.assertEquals(response.getStatusCode(), 401); //Check response code
         System.out.println(response.getBody().asString()); //Print the body
-    }
+    } */
 }

@@ -18,7 +18,6 @@ public class CustomerComments_Firefox {
     private WebDriver driver;
     private WebElement searchBox;
     private String baseUrl;
-    private AssertJUnit Assertions;
 
     @BeforeMethod
     public void setUp() throws Exception { //Let's set up our configurations. Details on README.md.
@@ -31,21 +30,55 @@ public class CustomerComments_Firefox {
     public void searchAndListProducts() throws InterruptedException { //Input product name to search bar and submit.
         driver.get(baseUrl);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        //login
+        WebElement loginButton = driver.findElement(By.id("nav-link-accountList"));
+        loginButton.click();
+
+        //Pages and all items don't reload fast. We must wait a little bit. I wrote a function below the code for not repeat myself.
+        letsWaitALittleBit();
+
+        WebElement emailInput = driver.findElement(By.id("ap_email"));
+        emailInput.sendKeys("");
+        emailInput.submit();
+
+        //Same with line 39
+        letsWaitALittleBit();
+
+        WebElement inputPassword = driver.findElement(By.id("ap_password"));
+        inputPassword.sendKeys(""); // Kendi şifrenizi girin
+
+        //Click the login button.
+        WebElement signInButton = driver.findElement(By.id("signInSubmit"));
+        signInButton.click();
+        letsWaitALittleBit();
+
         //Input "iphone" to search bar.
         searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='twotabsearchtextbox']")));
         searchBox.sendKeys("iphone" + Keys.ENTER);
 
-        //List all search results.
-        List<WebElement> productList = driver.findElements(By.xpath("//div[@data-component-type='s-search-result']"));
-        System.out.println("Number of products: "+productList.size());
+        WebElement firstItem = driver.findElement(By.cssSelector(".s-main-slot .s-result-item"));
+        firstItem.click();
+        letsWaitALittleBit();
 
-        //Click the first item.
-        if(!productList.isEmpty()) {
-            System.out.println(productList.get(0));
-            Thread.sleep(10000);
+        // Let's go to comments.
+        WebElement goToComments = driver.findElement(By.id("acrCustomerReviewLink"));
+        goToComments.click();
+
+        // Yorumların yüklenmesini bekle
+        letsWaitALittleBit();
+
+        // Like the button with error message.
+        List<WebElement> helpfulButtons = driver.findElements(By.className("cr-helpful-button"));
+
+        if (helpfulButtons.size() > 0) {
+            helpfulButtons.get(0).click();
+            System.out.println("The comment is liked!");
         } else {
-            System.out.println("No items found.");
+            System.out.println("Cannot find the like button.");
         }
+
+        letsWaitALittleBit();
 
         /* ACCEPT COOKIES AUTOMATICALLY
         WebElement acceptCookies = driver.findElement(new By.ByName(""));
@@ -59,12 +92,11 @@ public class CustomerComments_Firefox {
         }
     }
 
-    /*
-    public static void main(String[] args) {
-        CustomerComments test = new CustomerComments();
-
-        test.setUp();
-        test.inputProductNameToSearchBar();
-        test.tearDown();
-    } */
+    void letsWaitALittleBit() {
+        try {
+            Thread.sleep(3000); // Yükleme için bekleme
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
