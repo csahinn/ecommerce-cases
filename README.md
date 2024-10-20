@@ -1,5 +1,7 @@
 # Welcome to My Automated Test Repo!
-There are two practices to coding and running automated tests. 
+There are two practices to coding and running automated tests.<br> 
+First one is UI test in the Amazon e-commerce website. <br>
+Other one is an API automation testing.
 
 ## Getting Started
 I have used a couple of frameworks in this practice. <br>
@@ -45,16 +47,19 @@ Firstly we should write our scenarios in BDD structure. This test validates the 
 Feature: Like the first comment on Amazon product
 
   Scenario: Liking the first comment of a product
-    Given I open https://www.amazon.com.tr
-    When I user search for "iphone" in the search bar
-    Then I user retrieve the list of products
-    And I user click on the first product
-    And I user navigate to the comments section
-    Then I user click the like button on the first comment
+    Given I open "https://www.amazon.com.tr"
+    When I search for "iphone" in the search bar
+    Then I retrieve the list of products
+    And I click on the first product
+    And I navigate to the comments section
+    Then I click the like button on the first comment
 ```
 
 ## Test Automation - II (API)
 ### Getting Started
+There are 2 type of test cases for each HTTP request.<br>
+I used GET and POST requests for this tests.<br>
+You can check all test cases in the .xls file.
 
 ### GET Requests
 #### Happy Path
@@ -102,8 +107,3 @@ Feature: Login Account (400 - Invalid Password)
     And the response body should contain an error about missing password
 
 ```
-
-## Bug Reports
-
-### BUG: 
-### BUG: 
