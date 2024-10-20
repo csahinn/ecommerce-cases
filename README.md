@@ -2,7 +2,12 @@
 There are two practices to coding and running automated tests. 
 
 ## Getting Started
-I have used a couple of frameworks in this practice. You can see all the dependencies on pom.xml.
+I have used a couple of frameworks in this practice. <br>
+You can see all the dependencies on pom.xml. <br>
+Set up geckodriver.exe and Mozilla Firefox Developer Edition to your computer to run all tests.<br>
+Links:<br>
+[Geckodriver](https://github.com/mozilla/geckodriver/releases) <br>
+[Firefox Dev Edition](https://www.mozilla.org/tr/firefox/developer/) <br>
 
 ### Selenium WebDriver
 - In this test automation process, I preferred Selenium WebDriver tool with Java language.
@@ -49,6 +54,8 @@ Feature: Like the first comment on Amazon product
 ```
 
 ## Test Automation - II (API)
+### Getting Started
+
 ### GET Requests
 #### Happy Path
 ```cucumber
