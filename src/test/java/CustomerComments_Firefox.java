@@ -39,14 +39,14 @@ public class CustomerComments_Firefox {
         letsWaitALittleBit();
 
         WebElement emailInput = driver.findElement(By.id("ap_email"));
-        emailInput.sendKeys("");
+        emailInput.sendKeys(""); //Input email
         emailInput.submit();
 
         //Same with line 39
         letsWaitALittleBit();
 
         WebElement inputPassword = driver.findElement(By.id("ap_password"));
-        inputPassword.sendKeys(""); // Kendi şifrenizi girin
+        inputPassword.sendKeys(""); // Input password
 
         //Click the login button.
         WebElement signInButton = driver.findElement(By.id("signInSubmit"));
