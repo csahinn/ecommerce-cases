@@ -94,7 +94,7 @@ public class CustomerComments_Firefox {
 
     void letsWaitALittleBit() {
         try {
-            Thread.sleep(3000); // Yükleme için bekleme
+            Thread.sleep(3000); // Wait for reloading...
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
